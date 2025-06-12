@@ -10,6 +10,13 @@ import java.util.*;
 import com.sist.web.service.*;
 import com.sist.web.entity.*;
 import com.sist.web.vo.*;
+/*
+	1. Git Action
+	2. 새로운 운영체제 : Docker
+						|
+					쿠바네티스 => 클러스트
+	1+2 => 젠킨스
+ */
 @Controller
 public class FoodController {
 	@Autowired
@@ -41,4 +48,10 @@ public class FoodController {
 		return "index";
 	}
 	
+	@GetMapping("/detail")
+	public String food_detail(@RequestParam("fno") int fno,Model model) {
+		FoodEntity vo=fService.foodDetailData(fno);
+		model.addAttribute("vo",vo);
+		return "detail";
+	}
 }
